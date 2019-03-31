@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns="https://www.lger.cn/verify"
+		xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+		targetNamespace="https://www.lger.cn/verify"
+		elementFormDefault="qualified">
+	
+	<xsd:complexType name="errMsgAndTextType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="errMsg" type="xsd:string">
+					<xsd:annotation>
+						<xsd:documentation><![CDATA[当出现验证失败时提示的错误信息]]></xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	
+	<xsd:complexType name="maxAndMinType">
+		<xsd:all>
+			<xsd:element ref="eq" minOccurs="0" />
+			<xsd:element ref="lt" minOccurs="0" />
+			<xsd:element ref="gt" minOccurs="0" />
+			<xsd:element ref="lte" minOccurs="0" />
+			<xsd:element ref="gte" minOccurs="0" />
+		</xsd:all>
+	</xsd:complexType>
+	
+	<xsd:element name="notEmpty" type="errMsgAndTextType" />
+	<xsd:element name="notNull" type="errMsgAndTextType" />
+	<xsd:element name="notBlank" type="errMsgAndTextType" />
+	<xsd:element name="eq" type="errMsgAndTextType" />
+	<xsd:element name="lt" type="errMsgAndTextType" />
+	<xsd:element name="gt" type="errMsgAndTextType" />
+	<xsd:element name="lte" type="errMsgAndTextType" />
+	<xsd:element name="gte" type="errMsgAndTextType" />
+	<xsd:element name="pattern">
+		<xsd:complexType>
+			<xsd:sequence maxOccurs="unbounded">
+				<xsd:element name="value" type="errMsgAndTextType"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="String">
+		<xsd:annotation>
+			<xsd:documentation><![CDATA[name属性是必需的，为Map的Key]]></xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:all>
+				<xsd:element name="length" type="maxAndMinType" minOccurs="0"/>
+				<xsd:element ref="notBlank" minOccurs="0"/>
+				<xsd:element ref="notNull" minOccurs="0"/>
+				<xsd:element ref="pattern" minOccurs="0"/>
+			</xsd:all>
+			<xsd:attribute name="name" use="required">
+				<xsd:annotation>
+					<xsd:documentation><![CDATA[每一个EntityName都是一个唯一标志，不能出现重复情况，必填项目]]></xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name="castErrMsg">
+				<xsd:annotation>
+					<xsd:documentation><![CDATA[类型转换时异常的错误信息]]></xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="Integer">
+		<xsd:complexType>
+			<xsd:all>
+				<xsd:element name="default" minOccurs="0" type="xsd:integer" />
+				<xsd:element ref="notNull" minOccurs="0"/>
+				<xsd:element ref="eq" minOccurs="0"/>
+				<xsd:element ref="lt" minOccurs="0"/>
+				<xsd:element ref="gt" minOccurs="0"/>
+				<xsd:element ref="lte" minOccurs="0"/>
+				<xsd:element ref="gte" minOccurs="0"/>
+			</xsd:all>
+			<xsd:attribute name="name" use="required">
+				<xsd:annotation>
+					<xsd:documentation><![CDATA[每一个EntityName都是一个唯一标志，不能出现重复情况，必填项目]]></xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name="castErrMsg">
+				<xsd:annotation>
+					<xsd:documentation><![CDATA[类型转换时异常的错误信息]]></xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+		</xsd:complexType>				
+	</xsd:element>
+	
+	<xsd:element name="Long">
+		<xsd:complexType>
+			<xsd:all>
+				<xsd:element name="default" minOccurs="0" type="xsd:long" />
+				<xsd:element ref="notNull" minOccurs="0"/>
+				<xsd:element ref="eq" minOccurs="0"/>
+				<xsd:element ref="lt" minOccurs="0"/>
+				<xsd:element ref="gt" minOccurs="0"/>
+				<xsd:element ref="lte" minOccurs="0"/>
+				<xsd:element ref="gte" minOccurs="0"/>
+			</xsd:all>
+			<xsd:attribute name="name" use="required">
+				<xsd:annotation>
+					<xsd:documentation><![CDATA[每一个EntityName都是一个唯一标志，不能出现重复情况，必填项目]]></xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name="castErrMsg">
+				<xsd:annotation>
+					<xsd:documentation><![CDATA[类型转换时异常的错误信息]]></xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+		</xsd:complexType>				
+	</xsd:element>
+	
+	<xsd:element name="Double">
+		<xsd:complexType>
+			<xsd:all>
+				<xsd:element name="default" minOccurs="0" type="xsd:double" />
+				<xsd:element ref="notNull" minOccurs="0"/>
+				<xsd:element ref="eq" minOccurs="0"/>
+				<xsd:element ref="lt" minOccurs="0"/>
+				<xsd:element ref="gt" minOccurs="0"/>
+				<xsd:element ref="lte" minOccurs="0"/>
+				<xsd:element ref="gte" minOccurs="0"/>
+			</xsd:all>
+			<xsd:attribute name="name" use="required">
+				<xsd:annotation>
+					<xsd:documentation><![CDATA[每一个EntityName都是一个唯一标志，不能出现重复情况，必填项目]]></xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name="castErrMsg">
+				<xsd:annotation>
+					<xsd:documentation><![CDATA[类型转换时异常的错误信息]]></xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+		</xsd:complexType>				
+	</xsd:element>
+	
+	<xsd:element name="Date">
+		<xsd:complexType>
+			<xsd:all>
+				<xsd:element name="default" minOccurs="0" type="xsd:dateTime" />
+				<xsd:element ref="notNull" minOccurs="0"/>
+				<xsd:element ref="eq" minOccurs="0"/>
+				<xsd:element ref="lt" minOccurs="0"/>
+				<xsd:element ref="gt" minOccurs="0"/>
+				<xsd:element ref="lte" minOccurs="0"/>
+				<xsd:element ref="gte" minOccurs="0"/>
+			</xsd:all>
+			<xsd:attribute name="name" use="required">
+				<xsd:annotation>
+					<xsd:documentation><![CDATA[每一个EntityName都是一个唯一标志，不能出现重复情况，必填项目]]></xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name="format" default="yyyy-MM-dd">
+				<xsd:annotation>
+					<xsd:documentation><![CDATA[日期的转换格式]]></xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name="formatErrMsg">
+				<xsd:annotation>
+					<xsd:documentation><![CDATA[日期的转换时错误信息]]></xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+		</xsd:complexType>	
+	</xsd:element>
+	
+	<xsd:element name="List">
+		<xsd:complexType>
+			<xsd:all>
+				<xsd:element name="size" minOccurs="0">
+					<xsd:complexType>
+						<xsd:all >
+							<xsd:element ref="eq" minOccurs="0"/>
+							<xsd:element ref="lt" minOccurs="0"/>
+							<xsd:element ref="gt" minOccurs="0"/>
+							<xsd:element ref="lte" minOccurs="0"/>
+							<xsd:element ref="gte" minOccurs="0"/>
+						</xsd:all>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="forEach" minOccurs="0">
+					<xsd:complexType>
+						<xsd:attribute name="entity" use="required">
+							<xsd:annotation>
+								<xsd:documentation><![CDATA[该entity为一个entity的映射]]></xsd:documentation>
+							</xsd:annotation>
+						</xsd:attribute>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element ref="notEmpty" minOccurs="0"/>
+				<xsd:element ref="notNull" minOccurs="0"/>
+			</xsd:all>
+			<xsd:attribute name="name" use="required">
+				<xsd:annotation>
+					<xsd:documentation><![CDATA[每一个EntityName都是一个唯一标志，不能出现重复情况，必填项目]]></xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name="castErrMsg">
+				<xsd:annotation>
+					<xsd:documentation><![CDATA[类型转换时异常的错误信息]]></xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+		</xsd:complexType>				
+	</xsd:element>
+
+	<xsd:element name="Entity">
+		<xsd:complexType>
+			<xsd:sequence maxOccurs="unbounded">
+				<xsd:element ref="String" minOccurs="0"/>
+				<xsd:element ref="Integer" minOccurs="0"/>
+				<xsd:element ref="List" minOccurs="0"/>
+				<xsd:element ref="Long" minOccurs="0"/>
+				<xsd:element ref="Double" minOccurs="0"/>
+				<xsd:element ref="Date" minOccurs="0"/>
+			</xsd:sequence>
+			<xsd:attribute name="name">
+				<xsd:annotation>
+					<xsd:documentation><![CDATA[每一个EntityName都是一个唯一标志，不能出现重复情况，必填项目]]></xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name="castErrMsg">
+				<xsd:annotation>
+					<xsd:documentation><![CDATA[类型转换时异常的错误信息]]></xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="map-verify" >
+		<xsd:complexType>
+			<xsd:sequence maxOccurs="unbounded">
+				<xsd:element ref="Entity" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>
