@@ -52,22 +52,22 @@ public class DoubleEntity implements VerifyEntity {
 
             @Override
             boolean lessThan(Double value, Double lt) {
-                return lt != null && value < lt;
+                return value < lt;
             }
 
             @Override
             boolean greaterThan(Double value, Double gt) {
-                return gt != null && value > gt;
+                return value > gt;
             }
 
             @Override
             boolean lessThanOrEquals(Double value, Double lte) {
-                return lte != null && value <= lte;
+                return value <= lte;
             }
 
             @Override
             boolean greaterThanOrEquals(Double value, Double gte) {
-                return gte != null && value <= gte;
+                return value <= gte;
             }
 
             @Override

@@ -54,22 +54,22 @@ public class IntegerEntity implements VerifyEntity {
             }
             @Override
             boolean lessThan(Integer value, Integer lt) {
-                return lt != null && value < lt;
+                return value < lt;
             }
 
             @Override
             boolean greaterThan(Integer value, Integer gt) {
-                return gt != null && value > gt;
+                return value > gt;
             }
 
             @Override
             boolean lessThanOrEquals(Integer value, Integer lte) {
-                return lte != null && value <= lte;
+                return value <= lte;
             }
 
             @Override
             boolean greaterThanOrEquals(Integer value, Integer gte) {
-                return gte != null && value <= gte;
+                return value <= gte;
             }
 
             @Override
