@@ -1,6 +1,7 @@
 package cn.lger.entity;
 
 
+import cn.lger.parser.EntityFactory;
 import org.dom4j.Element;
 
 import java.util.Map;
@@ -16,8 +17,9 @@ public interface VerifyEntity {
     /**
      * 一个实体初始化，当实体被创建时将由创建方主动调用
      * @param currentEle 被创建的实体节点
+     * @param factory 实体创建工厂，可以通过此工厂创建Entity
      */
-    void init(Element currentEle);
+    void init(Element currentEle, EntityFactory factory);
 
     /**
      * 验证当前节点是否匹配XML的配置

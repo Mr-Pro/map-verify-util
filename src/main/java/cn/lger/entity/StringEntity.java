@@ -1,5 +1,6 @@
 package cn.lger.entity;
 
+import cn.lger.parser.EntityFactory;
 import cn.lger.utils.Util;
 import org.dom4j.Element;
 
@@ -35,7 +36,7 @@ public class StringEntity implements VerifyEntity {
 
 
     @Override
-    public void init(Element currentEle) {
+    public void init(Element currentEle, EntityFactory factory) {
         this.name = currentEle.attributeValue("name");
         Element element = currentEle.element("notNull");
         if (element != null) {

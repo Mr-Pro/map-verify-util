@@ -1,6 +1,7 @@
 package cn.lger.entity;
 
 import cn.lger.exception.ConvertException;
+import cn.lger.parser.EntityFactory;
 import cn.lger.utils.Util;
 import org.dom4j.Element;
 
@@ -22,7 +23,7 @@ public class IntegerEntity implements VerifyEntity {
     private String castErrMsg;
 
     @Override
-    public void init(Element currentEle) {
+    public void init(Element currentEle, EntityFactory factory) {
         String name = currentEle.attributeValue("name");
         this.castErrMsg = currentEle.attributeValue("castErrMsg");
         if (Util.isEmpty(this.castErrMsg)) {

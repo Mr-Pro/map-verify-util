@@ -1,6 +1,5 @@
 package cn.lger.parser;
 
-import cn.lger.entity.EntityFactory;
 import cn.lger.entity.VerifyEntity;
 import cn.lger.exception.VerifyException;
 import org.dom4j.Document;
@@ -24,7 +23,7 @@ public class EntityParser {
      * @param documents 多个XML对应的doc
      * @return EntityMap
      */
-    public static Map<String, VerifyEntity> parse(List<Document> documents) {
+    public static Map<String, VerifyEntity> parse(List<Document> documents, EntityFactory factory) {
         //entityMap用于存储解析后的VerifyEntity
         Map<String, VerifyEntity> entityMap = new HashMap<>(1 << 10);
         //遍历解析XML的doc
@@ -42,9 +41,12 @@ public class EntityParser {
                     new VerifyException("Current Entity Name :[" + entityName + "] is exist. It will be filled by new.").printStackTrace();
                 }
                 //通过工厂获取VerifyEntity
-                VerifyEntity rootEntity = EntityFactory.getEntity(rootEntityEle.getName());
+                if (factory == null) {
+                    factory = new EntityFactoryImpl();
+                }
+                VerifyEntity rootEntity = factory.getEntity(rootEntityEle.getName());
                 //调用初始化方法
-                rootEntity.init(rootEntityEle);
+                rootEntity.init(rootEntityEle, factory);
                 //存储解析后的Entity
                 entityMap.put(entityName, rootEntity);
             }
@@ -53,7 +55,6 @@ public class EntityParser {
         for (Map.Entry<String, VerifyEntity> entityEntry : entityMap.entrySet()) {
             entityEntry.getValue().finished(entityMap);
         }
-
         return entityMap;
     }
 

@@ -1,16 +1,18 @@
-package cn.lger.entity;
+package cn.lger.parser;
 
+import cn.lger.entity.*;
 import cn.lger.exception.VerifyUtilInitException;
 
 /**
  * Code that Changed the World
  *
  * @author Pro
- * @date 2019-03-30.
+ * @date 2019-04-02.
  */
-public class EntityFactory {
+public class EntityFactoryImpl implements EntityFactory{
 
-    public static VerifyEntity getEntity(String name) {
+    @Override
+    public VerifyEntity getEntity(String name) {
         switch (name) {
             case "Date":
                 return new DateEntity();
@@ -29,5 +31,4 @@ public class EntityFactory {
         }
 
     }
-
 }

@@ -1,11 +1,11 @@
 package cn.lger.entity;
 
-import cn.lger.exception.ConvertException;
 import cn.lger.utils.Util;
 import org.dom4j.Element;
 
 /**
- * Code that Changed the World
+ * 因为大部分实体中都有遇到lt，lte等，所以抽象为该类
+ * 并且判断的函数由其他创建的类具体实现
  *
  * @author Pro
  * @date 2019-03-31.

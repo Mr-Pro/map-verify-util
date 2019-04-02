@@ -1,6 +1,7 @@
 package cn.lger.entity;
 
 import cn.lger.exception.ConvertException;
+import cn.lger.parser.EntityFactory;
 import cn.lger.utils.Util;
 import org.dom4j.Element;
 
@@ -27,7 +28,7 @@ public class DateEntity implements VerifyEntity {
 
 
     @Override
-    public void init(Element currentEle) {
+    public void init(Element currentEle, EntityFactory factory) {
         String name = currentEle.attributeValue("name");
         this.format = currentEle.attributeValue("format");
         this.formatErrMsg = currentEle.attributeValue("formatErrMsg");
