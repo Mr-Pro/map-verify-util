@@ -34,34 +34,34 @@ public class VerifyTest {
         list.add(map1);
         list.add(map2);
         map.put("details", list);
-//        System.out.println(Arrays.toString(MapVerify.verifyByReturnArr("User01", map)));
-//        try {
-//            MapVerify.init(xmls);
-//        }catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        System.out.println(Arrays.toString(MapVerify.verifyByReturnArr("User01", map)));
-        for (int i = 0; i < 10000; i++) {
-            executorService.execute(new Runnable() {
-                @Override
-                public void run() {
-//                    MapVerify.verifyByReturnArr("User01", map);
-                    System.out.println(Arrays.toString(MapVerify.verifyByReturnArr("User01", map)));
-                }
-            });
+        System.out.println(Arrays.toString(MapVerify.verifyByReturnArr("User01", map)));
+        try {
+            MapVerify.init(xmls);
+        }catch (Exception e) {
+            e.printStackTrace();
         }
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(10);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                MapVerify.init(xmls);
-            }
-        }).start();
+        System.out.println(Arrays.toString(MapVerify.verifyByReturnArr("User01", map)));
+//        for (int i = 0; i < 10000; i++) {
+//            executorService.execute(new Runnable() {
+//                @Override
+//                public void run() {
+////                    MapVerify.verifyByReturnArr("User01", map);
+//                    System.out.println(Arrays.toString(MapVerify.verifyByReturnArr("User01", map)));
+//                }
+//            });
+//        }
+//
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    Thread.sleep(10);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//                MapVerify.init(xmls);
+//            }
+//        }).start();
 
         //通过verifyByReturnArr方法验证，验证后返回数组
 //        System.out.println(Arrays.toString(MapVerify.verifyByReturnArr("User01", map)));

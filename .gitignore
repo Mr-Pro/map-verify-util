@@ -8,3 +8,4 @@
 target
 out
 gen
+src/main/resources/demo.xml

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map-verify
+ 	xmlns="https://www.lger.cn/verify"
+ 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ 	xsi:schemaLocation="https://www.lger.cn/verify map-verify-util.xsd"
+	>
+	
+	<Entity name="User01">
+		<!--castErrMsg为当验证过程中类型解析错误时返回提示-->
+		<String name="username" castErrMsg="username必须为字符串类型">
+			<length>
+				<lt errMsg="当前值不能小于2">2</lt>
+			</length>
+			<notNull errMsg="当前值不能为空"/>
+			<notBlank errMsg="当前值不能为空（去掉首尾空格）"/>
+			<pattern>
+				<!--如果不匹配则发出错误-->
+				<value errMsg="号码D[0-8]{4}">[0-8]{4}</value>
+				<value errMsg="号码D[0-7]{4}">[0-7]{4}</value>
+			</pattern>
+		</String>
+		
+		<Integer name="age" castErrMsg="必须为整型">
+			<lt>2</lt>
+			<gt>150</gt>
+			<notNull/>
+		</Integer>
+
+		<List name="details">
+			<notNull/>
+			<!--size必须大于0-->
+			<notEmpty/>
+			<size>
+				<gte>0</gte>
+			</size>
+			<forEach entity="User02" />
+		</List>
+		
+		<Date name="birthday">
+			<lt>1900-07-21</lt>
+			<notNull/>
+		</Date>
+		
+		<Double name="money">
+			<lt>1</lt>
+			<gt>150</gt>
+			<notNull/>
+		</Double>
+		
+		<Date name="fatherBirthday">
+			<lt>1900-07-21</lt>
+		</Date>
+		
+	</Entity>
+
+	<Entity name="User02">
+		<String name="username">
+			<length>
+				<lt errMsg="当前值不能小于2">2</lt>
+				<gt errMsg="当前值不能大于10">10</gt>
+			</length>
+			<notBlank errMsg="当前值不能为空（去掉空格）"/>
+		</String>
+	</Entity>
+	
+</map-verify>
+	
